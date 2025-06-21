@@ -1,32 +1,29 @@
-﻿bool isEqual = false;
-int counter = 0;
-double averageSalary = 0f;
+﻿//Обчислення середнього заробітку: Напишіть програму, яка запитує користувача про зарплату кожного працівника за місяць. 
+//Після отримання всіх значень програма має обчислити та вивести середній заробіток.
 
-Console.Write("Enter quantity of employers");
-int employers = int.Parse(Console.ReadLine());
+bool isInt = false;
+bool isDouble = false;
+int numberOfEmployees = 0;
+double monthlySalary = 0;
+double totalSalary = 0;
 
-
-
-for (int counter2 = 0; counter2 < employers; counter2++)
+while (!isInt)
 {
-	Console.Write($"Enter salary of {counter2 + 1}th employee ");
-	double salaryPerMonth = float.Parse(Console.ReadLine());
-
-	averageSalary += salaryPerMonth;
+	Console.Write("Enter number of employees: ");
+	isInt = int.TryParse(Console.ReadLine(), out numberOfEmployees);
 }
 
-Console.WriteLine($"Average salary per month is {averageSalary/employers}");
+for (int i = 0; i < numberOfEmployees; i++)
+{
+	while (!isDouble)
+	{
+		Console.Write($"Enter salary for employee {i + 1}: ");
+		isDouble = double.TryParse(Console.ReadLine(), out monthlySalary);
+	}
 
+	totalSalary += monthlySalary;
 
-//bool isEqual = false;
-//while (!isEqual)
-//{
-//    Console.Write($"Enter salary of {counter + 1}th employee ");
-//	double salaryPerMonth = float.Parse(Console.ReadLine());
+	isDouble = false;
+}
 
-//    counter++;
-//    averageSalary += salaryPerMonth;
-
-//    if (counter == employers)
-//        isEqual = true;
-//}
+Console.WriteLine($"Average salary per month is {totalSalary / numberOfEmployees}");
